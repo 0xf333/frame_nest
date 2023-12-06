@@ -15,7 +15,7 @@ then
 
         if ! command -v mongod &> /dev/null
         then
-            echo "MongoDB is not installed... Please install MongoDB before running this app."
+            echo "MongoDB is not installed --> Please refer to the README.md file prerequisites section."
             exit 1
         fi
 
