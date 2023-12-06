@@ -1,11 +1,20 @@
 {
-  "name": "frame_nest",
-  "version": "1.0.0",
-  "description": "",
-  "main": "app.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "author": "",
-  "license": "ISC"
+    "name": "frame_nest",
+    "version": "1.0.0",
+    "description": "A tool that builds databases that streamlines the training process of AI models in sectors such as advanced image recognition",
+    "main": "src/app.js",
+    "scripts": {
+        "start": "node --no-deprecation src/app.js",
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "author": "https://github.com/0xf333",
+    "license": "MIT/FOSS",
+    "dependencies": {
+        "axios": "~1.6.2",
+        "dotenv": "~16.3.1",
+        "express": "~4.18.2",
+        "jszip": "~3.10.1",
+        "mongoose": "~8.0.1",
+        "multer": "~1.4.5-lts.1"
+    }
 }
