@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Frame Nest</title>
+</head>
+
+<body>
+    <div class="container">
+        <div class="box">
+            <h1 class="title">Upload Your Files</h1>
+            <form id="uploadForm" enctype="multipart/form-data">
+                <div class="file-select" id="fileLabel">
+                    Select file
+                    <input type="file" id="fileInput" name="file" accept="image/*,.zip" hidden>
+                </div>
+                <div id="message"></div>
+                <button type="submit" class="submit-btn">Upload</button>
+            </form>
+        </div>
+    </div>
+</body>
+
+</html>
