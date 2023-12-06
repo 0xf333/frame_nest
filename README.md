@@ -9,7 +9,7 @@ The type of database it builds streamlines the training process of AI models in 
 &nbsp;
 
 ## Prerequisites
-Make sure you have [Node.js](https://nodejs.org/en/) and [Mongo Database](https://www.mongodb.com/) installed and running on your Mac or Linux.
+Make sure you have [Node.js](https://nodejs.org/en/) and [Mongo Database](https://www.mongodb.com/) installed and running on your Linux.
 > Additionally, you could also install [MongoDB Compass](https://www.mongodb.com/products/compass) to view the database, it's basically a GUI for MongoDB. *( although not required if you're comfortable with the command line )*
 #### Make sure you have the following installed:
 - Mongodb cli: [donwlod here](https://www.mongodb.com/try/download/community)
@@ -51,13 +51,16 @@ chmod +x db_upload.sh start.sh
 http://localhost:3000/
 ```
 
+ ⚠️⚠️⚠️ Upload a batch of images by putting them inside a zip folder. Please note that the zip folder **should only contain images not nested inside any other folders.**
+
 &nbsp;
 
 ## OS specific instructions
-This installation guide is for Mac and Linux users.
+This installation guide is for Linux users.
 
 &nbsp;
 
 ## TODO
 - [ ] Add Windows installation guide
+- [ ] Add MacOS installation guide
 - [ ] Add code documentation
