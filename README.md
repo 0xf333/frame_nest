@@ -1,7 +1,8 @@
 # FrameNest
 
 **FrameNest** is a tool that uses computer vision to archive, and create searchable image databases with descriptive metadata.
-The type of database it builds streamlines the training process of AI models in sectors such as advanced image recognition.
+The type of database it builds streamlines the training process of AI models in sectors such as advanced image recognition.<br>
+*( I basically built it because I myself needed it )*
 
 ![Screenshot](readme_assets/screenshot.png)
 
