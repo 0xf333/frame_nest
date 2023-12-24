@@ -12,6 +12,37 @@ const { uploadImage, initGridFS } = require('./img_upload');
 
 mongoose.connect(process.env.DB_CONNECTION_STRING);
 
+/**
+ * This function is basically executed once the connection to the
+ * MongoDB database is successfully established.
+ * 
+ * @async
+ * @listens mongoose.connection#event:open
+ * @fires express#event:post
+ * 
+ * @description
+ * 1. Initializes GridFS for handling large in MongoDB.
+ * 2. Sets up an Express.js server, configuring it to serve 
+ *    static files from the 'public' directory.
+ * 3. Configures a POST endpoint '/upload' for handling file uploads:
+ *    - Accepts file uploads and checks for zip file format.
+ *    - Processes images contained within the zip file, if any.
+ *    - Processes images in batches for efficiency.
+ *    - Writes the image processing results to 'imageResponses.json'.
+ *    - Responds with a JSON containing the image processing results.
+ * 4. Includes error handling to manage exceptions that might occur 
+ *    during these operations.
+ * 
+ * @example
+ * The event listener is automatically invoked when the MongoDB 
+ * connection is opened.
+ * ```
+ * mongoose.connect(process.env.DB_CONNECTION_STRING);
+ * mongoose.connection.once('open', async () => {
+ *   //...
+ * });
+ * ```
+ */
 mongoose.connection.once('open', async () => {
     try {
         await initGridFS();
@@ -114,6 +145,40 @@ mongoose.connection.once('open', async () => {
 });
 
 
+/**
+ * This basically asynchronously processes an image file contained 
+ * within a ZIP archive.
+ * The way this work is it basically extracts the image file, converts 
+ * it to a Base64-encoded data URL, and then sends a request to the 
+ * Astica API for image analysis.
+ * And then after receiving the response, it uploads the image and 
+ * returns an object containing the image's filename, the API's response 
+ * data, and the image's file ID in the database.
+ * 
+ * @async
+ * @function processImage
+ * @param {JSZip} zip - A JSZip instance representing the ZIP folder
+ * @param {string} filename - The name of the image file to process.
+ * @param {string} apiKey - The API key for the Astica API.
+ * @returns {Promise<Object>} A promise that resolves to an object with 
+ *          the image's filename, the Astica API response, and the 
+ *          image's file ID in the database.
+ * @throws {Error} Throws an error if the Astica API call fails or if 
+ *         there's an error in processing the image.
+ * 
+ * @example
+ * Assuming 'zip' is a JSZip instance and 'filename' is a valid 
+ * image filename:
+ * ```
+ * processImage(zip, 'example.jpg', 'your_astica_api_key')
+ *   .then(result => {
+ *     console.log('Processed image:', result.filename);
+ *     console.log('Astica API response:', result.data);
+ *     console.log('Image file ID:', result.imageFileId);
+ *   })
+ *   .catch(error => console.error('Error processing image:', error));
+ * ```
+ */
 const processImage = async (zip, filename, apiKey) => {
     const fileData = await zip.files[filename].async('nodebuffer');
     const tempFilePath = `uploads/${filename}`;
