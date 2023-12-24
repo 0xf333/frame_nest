@@ -61,6 +61,7 @@ This installation guide is for Linux users.
 &nbsp;
 
 ## TODO
+- [x] Add code documentation
 - [ ] Add Windows installation guide
 - [ ] Add MacOS installation guide
-- [ ] Add code documentation
+
